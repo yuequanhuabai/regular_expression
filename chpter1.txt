@@ -54,6 +54,18 @@ sep[ea]r[ea]te    seperate , separate,separete,...
 
 egrep '^(From|Subject|Date): ' mailbox
 
+Ignoring Differences in Capitalization (忽略大小写)
+
+egrep -i '^(From|Subject|Date): ' mailbox
+
+
+单词分界符
+
+\<cat\>   匹配单词的开头，然后匹配cat这三个字母，然后是单词的结束位置；更直接的说就是匹配cat这个单词
+
+\<cat 和cat\> 分别表示 匹配以cat开头和cat结束的单词
+
+
 
 
 
