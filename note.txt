@@ -22,6 +22,64 @@ SUN 首席科学家Bill Joy 在计算机体系结构领域里，缓存是唯一�
 
 20世纪50年代和60年代  Robert Constable
 
-1968年 Ken Thompson的文章 Regular Expression Search Algorithm .
+1968年 Ken Thompson的文章 Regular Expression Search Algorithm .(A logical calculus of the ideas imminent in nervous activity)
 他描述了一种正则表达式编译器，该编译器生成里IBM 7094 的object代码。由此诞生了他的ed，
 这种编辑器后来成了Unix中ed编辑器的基础。
+
+lex程序
+
+Alfred Aho  --> egrep
+
+egrep 发展的同时其他程序，例如awk ，lex和sed，也按照各自的脚步前进。
+
+POSIX (Portable Operating System Interface) 标准化尝试
+
+POSIX分为两个流派：
+Basic Regular Expressions(BREs) 
+Extended Regular Expressions(EREs)
+
+Perl 的发展历程：
+1987年12月  Larry Wall  发布了 Perl Version 1.  提供了只有专用工具sed和awk才提供的正则表达式操作符---当时首创
+正则表达式引擎来自一个早期的项目 Larry的新闻阅读器rn(其中的正则表达式代码来自James Gosling的Emacs)
+
+Perl 2  发布于1988年6月。Larry放弃了原有的正则表达式代码，采用了Henry Spencer的正则表达式包的曾枪版。
+
+Perl 3 发布于1989年10月。添加了/e量词，还有其他...
+
+Perl 4 发布于1991年3月。
+
+Perl 5 发布于1994年10月(添加了少量元字符\G增强了迭代匹配的能力 P130；非捕获的括号 P45；忽略优先(lazy)的量词 P141;
+顺序循环功能 P60；以及/x量词 P72)
+
+
+1997年 Philip Hazel 开发了PCRE 这是一套兼容Perl正则表达式的库
+
+
+各个流派之间的问题：
+
+1.星号之类的量词能否作用于括号之内的子表达式？
+2.点号能否匹配换行符？排除型字符能否匹配换行符？以上两者能否匹配NUL字符？
+3.行锚点(line anchor)是名副其实的吗(例如，他们能否识别目标字符串内部的换行符)？
+  它们算正则表达式中的基础级别(first-class)的元字符吗？还是只能应用在某些结构中？
+4.字符组内部能出现转义字符吗？字符组内部还容许或不容许出现哪些字符？
+5.括号能够嵌套吗？如果是，嵌套的深度是否有限制呢(还有个问题，一共容许出现多少括号呢)？
+6.如果容许反向引用，在进行不区分大小写的匹配时，反向引用能顺利进行吗？在极端的情况下，反向引用的“行为”有意义吗？
+7.是否可以出现八进制的转义字符\123? 如果是，怎么区分它和反向引用呢？16进制的转义字符呢？这种支持是正则表达式引擎提供的，还是其他工具提供的？
+8.\w只支持数字和字符，还是包括其他字符？(表3-3列出的支持\w的工具对\w有不同的解释)。不同的单词分界符元字符对构成“单词分界符”的字符定义不一样，
+  \w是否与它们保持一致？它们是按照locale的定义呢，还是支持Unicode
+
+
+  一般来说，程序设计语言有3种处理正则表达式的方式：集成式、程序式、面向对象式。
+  第一种方式，集成式（Perl，procmail）
+
+
+P114 
+
+正则引擎：
+DFA         awk(大多数版本)、egrep(大多数版本)、flex、lex、MySql、Procmail
+
+传统型NFA： GNU Emacs、Java、grep(绝大多数版本)、less、more、.NET语言、PCRE library、
+            Perl、PHP(所有三套正则库)、Python、Ruby、sed(大多数版本)
+
+POSIX NFA： mawk、Mortice Kern Systems'utilities、GNU Emacs 
+DFA/NFA混合： GNU awk、GNU grep/egrep、Tcl
